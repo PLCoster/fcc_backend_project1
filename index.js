@@ -2,6 +2,14 @@
 var express = require('express');
 var app = express();
 
+// Log incoming requests in development:
+if (process.env.RUN_MODE === 'development') {
+  app.use((req, res, next) => {
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
+    next();
+  });
+}
+
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC
 var cors = require('cors');
@@ -20,6 +28,44 @@ app.get('/', function (req, res) {
 // Sample API endpoint
 app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
+});
+
+// Middleware that adds appropriate timestamp to res, based on 'date' query param
+const addTimeStamp = (req, res, next) => {
+  res.data = res.data || {};
+  const dateParamStr = req.params.date;
+
+  // If no date parameter, then return current date
+  if (!dateParamStr) {
+    res.data.timeStamp = new Date(Date.now());
+    return next();
+  }
+
+  // If date parameter can be converted to a number, assume it is ms:
+  if (/^[0-9]+$/.test(dateParamStr)) {
+    const dateNum = Number(dateParamStr);
+    res.data.timeStamp = new Date(dateNum);
+    return next();
+  }
+
+  // Otherwise try to convert date parameter to a Date object
+  try {
+    res.data.timeStamp = new Date(dateParamStr);
+  } catch (err) {
+    res.data.timeStamp = null;
+  }
+
+  return next();
+};
+
+// Request to API with a valid date object returns unix timestamp
+app.get('/api/(:date)?', addTimeStamp, (req, res) => {
+  if (res.data.timeStamp) {
+    const date = res.data.timeStamp;
+    return res.json({ unix: date.getTime(), utc: date.toGMTString() });
+  }
+  // Otherwise date was not recognised, return error
+  return res.json({ error: 'Invalid Date' });
 });
 
 // 404 page not found:
