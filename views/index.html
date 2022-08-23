@@ -2,12 +2,27 @@
 
 <html>
   <head>
-    <title>Timestamp Microservice | freeCodeCamp.org</title>
+    <title>Timestamp Microservice</title>
+
+    <!-- FAVICONS -->
     <link
-      rel="shortcut icon"
-      href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png"
-      type="image/x-icon"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/apple-touch-icon.png"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- STYLES -->
     <link
@@ -27,14 +42,14 @@
       rel="stylesheet"
       type="text/css"
     />
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="/style.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="."> Bar Chart </a>
+        <a class="navbar-brand" href=".">Timestamp Microservice</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -139,14 +154,35 @@
 
     <!-- MAIN -->
     <main class="container">
-      <h1>Timestamp Microservice</h1>
+      <h1>
+        <img
+          class="logo"
+          src="/logo.png"
+          alt="A white watch icon on a blue background"
+        />Timestamp Microservice
+      </h1>
       <hr />
       <div>
         <h3>Example Usage:</h3>
         <ul class="usage-list">
-          <li><a href="api/2015-12-25">[project url]/api/2015-12-25</a></li>
           <li>
-            <a href="api/1451001600000">[project url]/api/1451001600000</a>
+            Get timestamp from date string:
+            <br />
+            <a href="/api/2015-12-25"
+              >fcc-backend-project1.plcoster.repl.co/api/2015-12-25</a
+            >
+          </li>
+          <li>
+            Get timestamp from Unix timestamp:
+            <br />
+            <a href="/api/1451001600000"
+              >fcc-backend-project1.plcoster.repl.co/api/1451001600000</a
+            >
+          </li>
+          <li>
+            Get current timestamp:
+            <br />
+            <a href="/api/">fcc-backend-project1.plcoster.repl.co/api/</a>
           </li>
         </ul>
 
