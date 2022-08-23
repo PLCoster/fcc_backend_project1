@@ -5,13 +5,17 @@ body {
   font-size: 16px;
   color: #222;
   background-color: #fafafa;
-  text-align: center;
   line-height: 1.4em;
   min-height: 100vh;
 }
 
 main {
   padding: 40px 0;
+}
+
+main .logo {
+  max-height: 50px;
+  margin-right: 20px;
 }
 
 h3 {
@@ -31,10 +35,6 @@ code {
   padding: 2px;
   color: black;
   background-color: #fff;
-}
-
-.usage-list {
-  list-style-type: none;
 }
 
 .usage-list li {
