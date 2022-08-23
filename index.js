@@ -73,6 +73,12 @@ app.get('*', function (req, res) {
   res.send('Whoops! That page does not exist!');
 });
 
+// Internal Error Handler:
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Internal Server error: See Server Logs');
+});
+
 // listen for requests on e.g. http://localhost:3000/ if not otherwise specified
 const portNum = process.env.PORT ? process.env.PORT : 3000;
 var listener = app.listen(portNum, function () {
