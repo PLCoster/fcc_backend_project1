@@ -70,7 +70,8 @@ app.get('/api(/:date)?', addTimeStamp, (req, res) => {
 
 // 404 page not found:
 app.get('*', function (req, res) {
-  res.send('Whoops! That page does not exist!');
+  // Redirect to index
+  res.redirect('/');
 });
 
 // Internal Error Handler:
