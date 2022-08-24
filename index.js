@@ -27,11 +27,6 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-// Sample API endpoint
-app.get('/api/hello', function (req, res) {
-  res.json({ greeting: 'hello API' });
-});
-
 // Middleware that adds appropriate timestamp to res, based on 'date' query param
 const addTimeStamp = (req, res, next) => {
   res.data = res.data || {};
@@ -64,7 +59,7 @@ const addTimeStamp = (req, res, next) => {
 };
 
 // Request to API with a valid date object returns unix timestamp
-app.get('/api/(:date)?', addTimeStamp, (req, res) => {
+app.get('/api(/:date)?', addTimeStamp, (req, res) => {
   if (res.data.timeStamp) {
     const date = res.data.timeStamp;
     return res.json({ unix: date.getTime(), utc: date.toGMTString() });
