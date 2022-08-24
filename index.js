@@ -53,6 +53,9 @@ const addTimeStamp = (req, res, next) => {
   // Otherwise try to convert date parameter to a Date object
   try {
     res.data.timeStamp = new Date(dateParamStr);
+    if (res.data.timeStamp.toGMTString() === 'Invalid Date') {
+      res.data.timeStamp = null;
+    }
   } catch (err) {
     res.data.timeStamp = null;
   }
